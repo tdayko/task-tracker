@@ -1,4 +1,4 @@
-﻿using InternTaskTracker.Console.Helpers;
+﻿using InternTaskTracker.Console;
 using InternTaskTracker.Core;
 using InternTaskTracker.Core.Database;
 using Microsoft.Extensions.Configuration;
@@ -13,10 +13,10 @@ services.AddCoreDbContext(builderConfig);
 var serviceProvider = services.BuildServiceProvider();
 var dbContext = serviceProvider.GetRequiredService<ApplicationDbContext>();
 
-var oSInfo = OSDetector.GetOSInfo();
+var application = new TaskTrackerApplication(dbContext);
+await application.RunAsync();
 
-Console.WriteLine(oSInfo.GetOSEmoji + " Welcome to the Todo List App! " + oSInfo.GetOSEmoji);
-Console.WriteLine("Your OS is: " + oSInfo.GetOSName);
+
 
 
 
