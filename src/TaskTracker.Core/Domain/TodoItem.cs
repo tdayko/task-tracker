@@ -2,7 +2,7 @@ namespace TaskTracker.Core.Domain;
 
 public class TodoItem(string description, bool isComplete = false)
 {
-    public Guid Id { get; set; } = Guid.NewGuid();
+    public int Id { get; set; }
     public string Description { get; set; } = description;
     public bool IsComplete { get; set; } = isComplete;
 }

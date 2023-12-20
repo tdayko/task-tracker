@@ -1,4 +1,4 @@
-namespace TaskTracker.Console.Interfaces;
+namespace TaskTracker.Application.Interfaces;
 
 public interface ISystemDescriptor
 {

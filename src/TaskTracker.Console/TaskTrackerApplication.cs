@@ -1,4 +1,6 @@
 using Microsoft.EntityFrameworkCore;
+using TaskTracker.Application.Interfaces;
+using TaskTracker.Core.Domain;
 
 namespace TaskTracker.Console;
 
@@ -13,11 +15,10 @@ public class TaskTrackerApplication(DbContext context)
         while (true)
         {
             ShowMenu();
-            // var choiceRaw = Console.ReadLine() ?? "";
-            // _ = Enum.TryParse(choiceRaw, out TodoChoice choice);
+            var choiceRaw = Terminal.ReadLine() ?? string.Empty;
+            _ = Enum.TryParse(choiceRaw, out TodoChoice choice);
 
             // await ChoiceHandler(choice);
-            Terminal.Read();
         }
     }
 
@@ -38,4 +39,29 @@ public class TaskTrackerApplication(DbContext context)
 
         _console.Write("Enter your choice (1-5): ");
     }
+
+    // private async Task ChoiceHandler(TodoChoice choice)
+    // {
+    //     switch (choice)
+    //     {
+    //         case TodoChoice.Add:
+    //             await AddTaskAsync();
+    //             break;
+    //         case TodoChoice.Remove:
+    //             await RemoveTaskAsync();
+    //             break;
+    //         case TodoChoice.MarkAsCompleted:
+    //             await MarkTaskAsCompletedAsync();
+    //             break;
+    //         case TodoChoice.View:
+    //             await ViewTasksAsync();
+    //             break;
+    //         case TodoChoice.Exit:
+    //             Exit();
+    //             break;
+    //         default:
+    //             _console.WriteLine("Invalid choice. Please try again.");
+    //             break;
+    //     }
+    // }
 }

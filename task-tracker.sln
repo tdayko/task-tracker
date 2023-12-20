@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.Console", "src\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.Core", "src\TaskTracker.Core\TaskTracker.Core.csproj", "{3F294691-42C6-4DD4-A440-8D80076C244A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskTracker.Application", "src\TaskTracker.Application\TaskTracker.Application.csproj", "{141423DA-27B4-47D5-B54E-8440DB41B4CF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,10 +34,15 @@ Global
 		{3F294691-42C6-4DD4-A440-8D80076C244A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F294691-42C6-4DD4-A440-8D80076C244A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F294691-42C6-4DD4-A440-8D80076C244A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{141423DA-27B4-47D5-B54E-8440DB41B4CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{141423DA-27B4-47D5-B54E-8440DB41B4CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{141423DA-27B4-47D5-B54E-8440DB41B4CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{141423DA-27B4-47D5-B54E-8440DB41B4CF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{E7B1664F-B58B-4405-846A-2D65C7919BDF} = {7059C2C5-750D-4BBD-B829-828C63AA7987}
 		{F72E5648-A4EF-4C27-887C-7E3A26C58B17} = {7059C2C5-750D-4BBD-B829-828C63AA7987}
 		{3F294691-42C6-4DD4-A440-8D80076C244A} = {7059C2C5-750D-4BBD-B829-828C63AA7987}
+		{141423DA-27B4-47D5-B54E-8440DB41B4CF} = {7059C2C5-750D-4BBD-B829-828C63AA7987}
 	EndGlobalSection
 EndGlobal
