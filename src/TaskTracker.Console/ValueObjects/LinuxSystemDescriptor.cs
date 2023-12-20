@@ -1,4 +1,4 @@
-namespace InternTaskTracker.Console.ValueObjects;
+namespace TaskTracker.Console.ValueObjects;
 
 public class LinuxSystemDescriptor : ISystemDescriptor
 {

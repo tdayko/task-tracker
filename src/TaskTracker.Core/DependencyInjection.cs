@@ -1,10 +1,10 @@
-using InternTaskTracker.Core.Database;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace InternTaskTracker.Core;
+using TaskTracker.Core.Database;
+
+namespace TaskTracker.Core;
 
 public static class DependencyInjection
 {

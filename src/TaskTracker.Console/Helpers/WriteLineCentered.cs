@@ -1,4 +1,4 @@
-namespace InternTaskTracker.Console.Helpers;
+namespace TaskTracker.Console.Helpers;
 
 public class ExtendedConsole(int baseTextWidth)
 {

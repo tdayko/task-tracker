@@ -1,8 +1,8 @@
-using InternTaskTracker.Core.Domain;
-
 using Microsoft.EntityFrameworkCore;
 
-namespace InternTaskTracker.Core.Database;
+using TaskTracker.Core.Domain;
+
+namespace TaskTracker.Core.Database;
 
 public class ApplicationDbContext : DbContext
 {

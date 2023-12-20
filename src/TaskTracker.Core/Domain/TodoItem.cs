@@ -1,4 +1,4 @@
-namespace InternTaskTracker.Core.Domain;
+namespace TaskTracker.Core.Domain;
 
 public class TodoItem(string description, bool isComplete = false)
 {

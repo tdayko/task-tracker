@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-namespace InternTaskTracker.Console;
+namespace TaskTracker.Console;
 
 public class TaskTrackerApplication(DbContext context)
 {
