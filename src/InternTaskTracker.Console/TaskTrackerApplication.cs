@@ -1,14 +1,11 @@
-using InternTaskTracker.Console.Helpers;
-using InternTaskTracker.Console.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using Terminal = System.Console;
 
 namespace InternTaskTracker.Console;
 
 public class TaskTrackerApplication(DbContext context)
 {
-    private readonly DbContext _context = context;
     private readonly ExtendedConsole _console = new(12);
+    private readonly DbContext _context = context;
     private readonly ISystemDescriptor _systemDescriptor = OSDetector.GetOSInfo();
 
     public Task RunAsync()
@@ -27,7 +24,8 @@ public class TaskTrackerApplication(DbContext context)
     private void ShowMenu()
     {
         Terminal.Clear();
-        _console.WriteLine($"{_systemDescriptor.GetOSEmoji}  Welcome to the Todo List App! {_systemDescriptor.GetOSEmoji}\n");
+        _console.WriteLine(
+            $"{_systemDescriptor.GetOSEmoji}  Welcome to the Todo List App! {_systemDescriptor.GetOSEmoji}\n");
 
         _console.WriteLine("===================================");
         _console.WriteLine($"Operacional System: {_systemDescriptor.GetOSName} {_systemDescriptor.GetOSEmoji}\n");

@@ -1,6 +1,3 @@
-using InternTaskTracker.Console.Interfaces;
-using InternTaskTracker.Console.ValueObjects;
-
 namespace InternTaskTracker.Console.Helpers;
 
 public static class OSDetector

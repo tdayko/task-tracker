@@ -1,4 +1,3 @@
-using InternTaskTracker.Console.Interfaces;
 namespace InternTaskTracker.Console.ValueObjects;
 
 public class LinuxSystemDescriptor : ISystemDescriptor
