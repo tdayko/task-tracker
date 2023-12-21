@@ -15,7 +15,7 @@ public class TaskTrackerApplication(DbContext context)
         {
             ShowMenu();
             var choiceRaw = Terminal.ReadLine() ?? string.Empty;
-            _ = Enum.TryParse(choiceRaw, out TodoChoice choice);
+            _ = Enum.TryParse(choiceRaw, out TaskChoice choice);
 
             // await ChoiceHandler(choice);
         }

@@ -10,5 +10,5 @@ public class AddTaskCommandHandler(ITaskRepository taskRepository) : IRequestHan
     private readonly ITaskRepository _taskRepository = taskRepository;
 
     async Task IRequestHandler<AddTaskCommand>.Handle(AddTaskCommand request, CancellationToken cancellationToken)
-        => await _taskRepository.AddTask(new TodoItem(request.Description));
+        => await _taskRepository.AddTask(new TaskItem(request.Description));
 }

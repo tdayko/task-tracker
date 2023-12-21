@@ -7,5 +7,5 @@ namespace TaskTracker.Core.Database;
 public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-    public DbSet<TodoItem>? Todos { get; set; }
+    public DbSet<TaskItem>? Todos { get; set; }
 }

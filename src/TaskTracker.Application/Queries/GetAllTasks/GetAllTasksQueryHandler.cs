@@ -5,10 +5,10 @@ using TaskTracker.Core.Domain;
 
 namespace TaskTracker.Application.Queries.GetAllTasks;
 
-public class GetAllTasksQueryHandler(ITaskRepository taskRepository) : IRequestHandler<GetAllTasksQuery, IEnumerable<TodoItem>>
+public class GetAllTasksQueryHandler(ITaskRepository taskRepository) : IRequestHandler<GetAllTasksQuery, IEnumerable<TaskItem>>
 {
     private readonly ITaskRepository _taskRepository = taskRepository;
 
-    public async Task<IEnumerable<TodoItem>> Handle(GetAllTasksQuery request, CancellationToken cancellationToken)
+    public async Task<IEnumerable<TaskItem>> Handle(GetAllTasksQuery request, CancellationToken cancellationToken)
         => await _taskRepository.GetAllTasks();
 }

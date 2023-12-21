@@ -4,8 +4,8 @@ namespace TaskTracker.Application.Interfaces;
 
 public interface ITaskRepository
 {
-    Task AddTask(TodoItem todoItem);
+    Task AddTask(TaskItem taskItem);
     Task RemoveTask(int id);
-    Task<IEnumerable<TodoItem>> GetAllTasks();
-    Task<TodoItem> GetOneTask(int id);
+    Task<IEnumerable<TaskItem>> GetAllTasks();
+    Task<TaskItem> GetOneTask(int id);
 }
