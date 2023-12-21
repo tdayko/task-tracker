@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using TaskTracker.Application.Interfaces;
 using TaskTracker.Core.Domain;
 
 namespace TaskTracker.Console;

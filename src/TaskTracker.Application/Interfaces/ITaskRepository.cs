@@ -1,11 +1,11 @@
 using TaskTracker.Core.Domain;
-namespace TaskTracker.Application.Interface;
+
+namespace TaskTracker.Application.Interfaces;
 
 public interface ITaskRepository
 {
     Task AddTask(TodoItem todoItem);
     Task RemoveTask(int id);
-    Task<IEnumerable<TodoItem>> ViewTasks();
-    void MarkTaskAsCompleted(int id);
-    void Exit();
+    Task<IEnumerable<TodoItem>> GetAllTasks();
+    Task<TodoItem> GetOneTask(int id);
 }

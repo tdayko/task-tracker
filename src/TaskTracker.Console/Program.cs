@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using TaskTracker.Console;
 using TaskTracker.Core;
 using TaskTracker.Core.Database;
