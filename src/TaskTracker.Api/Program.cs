@@ -1,5 +1,5 @@
 using Microsoft.OpenApi.Models;
-
+using TaskTracker.Application;
 using TaskTracker.Core;
 
 #region Builder Services
@@ -9,6 +9,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCoreDbContext(builder.Configuration);
+builder.Services.AddApplication();
 builder.Services.AddSwaggerGen(x =>
     x.SwaggerDoc("v1",
         new OpenApiInfo
