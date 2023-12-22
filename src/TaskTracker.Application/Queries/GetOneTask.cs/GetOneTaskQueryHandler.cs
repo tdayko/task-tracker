@@ -1,5 +1,4 @@
 using MediatR;
-
 using TaskTracker.Application.Interfaces;
 using TaskTracker.Core.Domain;
 
