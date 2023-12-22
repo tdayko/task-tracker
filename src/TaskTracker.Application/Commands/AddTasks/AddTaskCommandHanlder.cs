@@ -1,7 +1,6 @@
-using MediatR;
-
-using TaskTracker.Application.Interfaces;
 using TaskTracker.Core.Domain;
+using TaskTracker.Application.Interfaces;
+using MediatR;
 
 namespace TaskTracker.Application.Commands.AddTasks;
 
