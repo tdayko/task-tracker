@@ -10,7 +10,7 @@ using TaskTracker.Core.Database;
 namespace TaskTracker.Core.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231222181324_InitialMigrations")]
+    [Migration("20231224221350_InitialMigrations")]
     partial class InitialMigrations
     {
         /// <inheritdoc />
@@ -34,7 +34,7 @@ namespace TaskTracker.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Todos");
+                    b.ToTable("TaskItems");
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,7 @@ namespace TaskTracker.Core.Database;
 public class ApplicationDbContext : DbContext
 {
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
-    public DbSet<TaskItem>? Todos { get; set; }
+    public DbSet<TaskItem>? TaskItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

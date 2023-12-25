@@ -9,5 +9,5 @@ public class AddTaskCommandHandler(ITaskRepository taskRepository) : IRequestHan
     private readonly ITaskRepository _taskRepository = taskRepository;
 
     public Task<TaskItem> Handle(AddTaskCommand request, CancellationToken cancellationToken)
-        => _taskRepository.AddTask(new TaskItem(request.Description));
+        => _taskRepository.AddTask(request.TaskItem);
 }

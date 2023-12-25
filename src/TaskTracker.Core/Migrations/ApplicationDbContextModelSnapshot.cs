@@ -31,7 +31,7 @@ namespace TaskTracker.Core.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Todos");
+                    b.ToTable("TaskItems");
                 });
 #pragma warning restore 612, 618
         }
