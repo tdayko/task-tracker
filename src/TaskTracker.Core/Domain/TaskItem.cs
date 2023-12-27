@@ -2,7 +2,7 @@ namespace TaskTracker.Core.Domain;
 
 public class TaskItem(string description, bool isComplete = false)
 {
-    public int Id { get; set; }
+    public int ?Id { get; set; }
     public string Description { get; set; } = description;
     public bool IsComplete { get; set; } = isComplete;
 }

@@ -2,14 +2,13 @@ using Microsoft.EntityFrameworkCore;
 using TaskTracker.Core.Domain;
 
 namespace TaskTracker.Console;
-
-public class TaskTrackerApplication(DbContext context)
+public class UserInterface(TaskManager taskManager)
 {
     private readonly ExtendedConsole _console = new(12);
-    private readonly DbContext _context = context;
     private readonly ISystemDescriptor _systemDescriptor = OSDetector.GetOSInfo();
+    private readonly TaskManager _taskManager = taskManager;
 
-    public Task RunAsync()
+    public async Task RunAsync()
     {
         while (true)
         {
@@ -17,7 +16,7 @@ public class TaskTrackerApplication(DbContext context)
             var choiceRaw = Terminal.ReadLine() ?? string.Empty;
             _ = Enum.TryParse(choiceRaw, out TaskChoice choice);
 
-            // await ChoiceHandler(choice);
+            await ChoiceHanler(choice);
         }
     }
 
@@ -39,28 +38,22 @@ public class TaskTrackerApplication(DbContext context)
         _console.Write("Enter your choice (1-5): ");
     }
 
-    // private async Task ChoiceHandler(TodoChoice choice)
-    // {
-    //     switch (choice)
-    //     {
-    //         case TodoChoice.Add:
-    //             await AddTaskAsync();
-    //             break;
-    //         case TodoChoice.Remove:
-    //             await RemoveTaskAsync();
-    //             break;
-    //         case TodoChoice.MarkAsCompleted:
-    //             await MarkTaskAsCompletedAsync();
-    //             break;
-    //         case TodoChoice.View:
-    //             await ViewTasksAsync();
-    //             break;
-    //         case TodoChoice.Exit:
-    //             Exit();
-    //             break;
-    //         default:
-    //             _console.WriteLine("Invalid choice. Please try again.");
-    //             break;
-    //     }
-    // }
+    private async Task ChoiceHanler(TaskChoice choice)
+    {
+        switch (choice)
+        {
+            case TaskChoice.Add:
+                await _taskManager.AddTask();
+                break;
+            case TaskChoice.View:
+                await _taskManager.GetAllTasks();
+                break;
+            case TaskChoice.Remove:
+                await _taskManager.RemoveTask();
+                break;
+            default:
+                _console.WriteLine("Invalid choice. Please enter a valid choice.");
+                break;
+        }
+    }
 }

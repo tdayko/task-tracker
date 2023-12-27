@@ -14,7 +14,7 @@ namespace TaskTracker.Api.Controllers;
 [Route("task-tracker/api/")]
 public class TaskController(IMediator mediator) : ControllerBase
 {
-    private readonly IMediator _mediator = mediator;
+    private readonly ISender _mediator = mediator;
 
     [HttpGet("tasks")]
     public async Task<IActionResult> GetAllTasks()
