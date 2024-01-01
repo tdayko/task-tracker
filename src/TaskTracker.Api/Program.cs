@@ -1,8 +1,9 @@
 using Microsoft.OpenApi.Models;
+
 using TaskTracker.Application;
 using TaskTracker.Application.Interfaces;
-using TaskTracker.Core;
 using TaskTracker.Application.Repository;
+using TaskTracker.Infra;
 
 #region Builder Services
 
@@ -16,10 +17,7 @@ builder.Services.AddScoped<ITaskRepository, TaskRepository>();
 builder.Services.AddApplication();
 builder.Services.AddSwaggerGen(x =>
     x.SwaggerDoc("v1",
-        new OpenApiInfo
-        {
-        Title = "Task tracker API", Description = "Keep track of your tasks as an ", Version = "v1"
-        }
+        new OpenApiInfo { Title = "Task tracker API", Description = "Keep track of your tasks as an ", Version = "v1" }
     ));
 
 WebApplication app = builder.Build();

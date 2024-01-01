@@ -1,7 +1,8 @@
-using Microsoft.EntityFrameworkCore;
-using TaskTracker.Core.Domain;
+using TaskTracker.Console.Services;
+using TaskTracker.Domain.Enums;
 
 namespace TaskTracker.Console;
+
 public class UserInterface(TaskManager taskManager)
 {
     private readonly ExtendedConsole _console = new(12);
@@ -13,7 +14,7 @@ public class UserInterface(TaskManager taskManager)
         while (true)
         {
             ShowMenu();
-            var choiceRaw = Terminal.ReadLine() ?? string.Empty;
+            string choiceRaw = Terminal.ReadLine() ?? string.Empty;
             _ = Enum.TryParse(choiceRaw, out TaskChoice choice);
 
             await ChoiceHanler(choice);

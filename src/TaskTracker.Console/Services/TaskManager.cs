@@ -4,8 +4,9 @@ using TaskTracker.Application.Commands.AddTasks;
 using TaskTracker.Application.Commands.RemoveTasks;
 using TaskTracker.Application.Queries.GetAllTasks;
 using TaskTracker.Application.Queries.GetOneTask.cs;
-using TaskTracker.Core.Database;
-using TaskTracker.Core.Domain;
+using TaskTracker.Domain.Entities;
+
+namespace TaskTracker.Console.Services;
 
 public class TaskManager(ISender mediator)
 {
@@ -15,7 +16,7 @@ public class TaskManager(ISender mediator)
     public async Task AddTask()
     {
         _console.Write("Enter task description: ");
-        string description = Console.ReadLine() ?? string.Empty;
+        string description = Terminal.ReadLine() ?? string.Empty;
 
         if (string.IsNullOrWhiteSpace(description))
         {
@@ -34,20 +35,20 @@ public class TaskManager(ISender mediator)
             _console.WriteLine(error.Message);
             _console.WriteLine(error.StackTrace);
         }
-        
     }
 
     public async Task GetAllTasks()
     {
         try
         {
-            var tasks = await _mediator.Send(new GetAllTasksQuery());
+            IEnumerable<TaskItem> tasks = await _mediator.Send(new GetAllTasksQuery());
             Terminal.Clear();
             _console.WriteLine("Tasks:");
-            foreach (var task in tasks)
+            foreach (TaskItem task in tasks)
             {
                 _console.WriteLine($"Id: {task.Id} | Description: {task.Description} | IsComplete: {task.IsComplete}");
             }
+
             Terminal.ReadKey();
         }
         catch (Exception error)
@@ -60,7 +61,7 @@ public class TaskManager(ISender mediator)
     public async Task GetOneTask()
     {
         _console.Write("Enter task id: ");
-        string id = Console.ReadLine() ?? string.Empty;
+        string id = Terminal.ReadLine() ?? string.Empty;
 
         if (string.IsNullOrWhiteSpace(id))
         {
@@ -71,7 +72,7 @@ public class TaskManager(ISender mediator)
 
         try
         {
-            var task = await _mediator.Send(new GetOneTaskQuery(int.Parse(id)));
+            TaskItem task = await _mediator.Send(new GetOneTaskQuery(int.Parse(id)));
             _console.WriteLine($"Id: {task.Id} | Description: {task.Description} | IsComplete: {task.IsComplete}");
         }
         catch (Exception error)
@@ -84,7 +85,7 @@ public class TaskManager(ISender mediator)
     public async Task RemoveTask()
     {
         _console.Write("Enter task id: ");
-        string id = Console.ReadLine() ?? string.Empty;
+        string id = Terminal.ReadLine() ?? string.Empty;
 
         if (string.IsNullOrWhiteSpace(id))
         {

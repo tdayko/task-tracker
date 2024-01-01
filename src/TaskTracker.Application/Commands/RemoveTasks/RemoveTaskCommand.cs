@@ -1,5 +1,6 @@
-using TaskTracker.Core.Domain;
 using MediatR;
+
+using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Application.Commands.RemoveTasks;
 

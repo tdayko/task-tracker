@@ -1,6 +1,7 @@
-using TaskTracker.Application.Interfaces;
 using MediatR;
-using TaskTracker.Core.Domain;
+
+using TaskTracker.Application.Interfaces;
+using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Application.Commands.AddTasks;
 
@@ -9,5 +10,7 @@ public class AddTaskCommandHandler(ITaskRepository taskRepository) : IRequestHan
     private readonly ITaskRepository _taskRepository = taskRepository;
 
     public Task<TaskItem> Handle(AddTaskCommand request, CancellationToken cancellationToken)
-        => _taskRepository.AddTask(request.TaskItem);
+    {
+        return _taskRepository.AddTask(request.TaskItem);
+    }
 }

@@ -4,11 +4,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TaskTracker.Core.Database;
+using TaskTracker.Infra.Database;
 
 #nullable disable
 
-namespace TaskTracker.Core.Migrations
+namespace TaskTracker.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -22,7 +22,7 @@ namespace TaskTracker.Core.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("TaskTracker.Core.Domain.TaskItem", b =>
+            modelBuilder.Entity("TaskTracker.Domain.Entities.TaskItem", b =>
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()

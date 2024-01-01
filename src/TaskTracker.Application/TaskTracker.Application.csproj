@@ -1,14 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0"/>
-    <PackageReference Include="MediatR" Version="11.1.0"/>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TaskTracker.Core\TaskTracker.Core.csproj"/>
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0"/>
+        <PackageReference Include="MediatR" Version="11.1.0"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\TaskTracker.Domain\TaskTracker.Domain.csproj"/>
+        <ProjectReference Include="..\TaskTracker.Infra\TaskTracker.Infra.csproj"/>
+    </ItemGroup>
 </Project>

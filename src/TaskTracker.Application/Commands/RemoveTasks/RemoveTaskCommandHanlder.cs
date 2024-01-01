@@ -1,6 +1,7 @@
 using MediatR;
+
 using TaskTracker.Application.Interfaces;
-using TaskTracker.Core.Domain;
+using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Application.Commands.RemoveTasks;
 
@@ -9,5 +10,7 @@ public class RemoveTaskCommandHandler(ITaskRepository taskRepository) : IRequest
     private readonly ITaskRepository _taskRepository = taskRepository;
 
     public Task<TaskItem> Handle(RemoveTaskCommand request, CancellationToken cancellationToken)
-        => _taskRepository.RemoveTask(request.Id);
+    {
+        return _taskRepository.RemoveTask(request.Id);
+    }
 }

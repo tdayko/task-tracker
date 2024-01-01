@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using TaskTracker.Core.Domain;
+using TaskTracker.Domain.Entities;
 
-namespace TaskTracker.Core.Database;
+namespace TaskTracker.Infra.Database;
 
 public class ApplicationDbContext : DbContext
 {

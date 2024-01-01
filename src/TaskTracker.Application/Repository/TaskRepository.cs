@@ -1,7 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+
 using TaskTracker.Application.Interfaces;
-using TaskTracker.Core.Database;
-using TaskTracker.Core.Domain;
+using TaskTracker.Domain.Entities;
+using TaskTracker.Infra.Database;
 
 namespace TaskTracker.Application.Repository;
 
@@ -17,10 +18,14 @@ public class TaskRepository(ApplicationDbContext context) : ITaskRepository
     }
 
     public async Task<IEnumerable<TaskItem>> GetAllTasks()
-        => await _context.TaskItems!.ToListAsync();
+    {
+        return await _context.TaskItems!.ToListAsync();
+    }
 
     public async Task<TaskItem> GetOneTask(int id)
-        => await _context.TaskItems!.FirstOrDefaultAsync(x => x.Id == id);
+    {
+        return await _context.TaskItems!.FirstOrDefaultAsync(x => x.Id == id);
+    }
 
     public async Task<TaskItem> RemoveTask(int id)
     {

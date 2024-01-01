@@ -5,15 +5,15 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using TaskTracker.Core.Database;
+using TaskTracker.Infra.Database;
 
 #nullable disable
 
-namespace TaskTracker.Core.Migrations
+namespace TaskTracker.Infra.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231227135311_InitialMigrations")]
-    partial class InitialMigrations
+    [Migration("20240101212711_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -25,7 +25,7 @@ namespace TaskTracker.Core.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("TaskTracker.Core.Domain.TaskItem", b =>
+            modelBuilder.Entity("TaskTracker.Domain.Entities.TaskItem", b =>
                 {
                     b.Property<int?>("Id")
                         .ValueGeneratedOnAdd()

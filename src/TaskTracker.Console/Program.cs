@@ -1,25 +1,26 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 using TaskTracker.Application;
 using TaskTracker.Application.Repository;
 using TaskTracker.Console;
-using TaskTracker.Core;
-using TaskTracker.Core.Database;
+using TaskTracker.Console.Services;
+using TaskTracker.Infra;
 
-var builderConfig = new ConfigurationBuilder()
+IConfigurationRoot builderConfig = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false, true)
     .Build();
 
-var services = new ServiceCollection();
+ServiceCollection services = new ServiceCollection();
 
-services.AddCoreDbContext(builderConfig);
 
 services.AddApplication();
 services.AddSingleton<TaskManager>();
 services.AddScoped<ITaskRepository, TaskRepository>();
+services.AddCoreDbContext(builderConfig);
 ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-var userInterface = new UserInterface(serviceProvider.GetRequiredService<TaskManager>());
+UserInterface userInterface = new UserInterface(serviceProvider.GetRequiredService<TaskManager>());
 
 try
 {
