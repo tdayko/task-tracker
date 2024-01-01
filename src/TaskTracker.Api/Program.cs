@@ -2,8 +2,8 @@ using Microsoft.OpenApi.Models;
 
 using TaskTracker.Application;
 using TaskTracker.Application.Interfaces;
-using TaskTracker.Application.Repository;
 using TaskTracker.Infra;
+using TaskTracker.Infra.Repository;
 
 #region Builder Services
 

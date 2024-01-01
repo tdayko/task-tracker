@@ -4,7 +4,7 @@ using TaskTracker.Application.Interfaces;
 using TaskTracker.Domain.Entities;
 using TaskTracker.Infra.Database;
 
-namespace TaskTracker.Application.Repository;
+namespace TaskTracker.Infra.Repository;
 
 public class TaskRepository(ApplicationDbContext context) : ITaskRepository
 {

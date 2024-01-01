@@ -1,11 +1,10 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using TaskTracker.Application;
-using TaskTracker.Application.Repository;
 using TaskTracker.Console;
 using TaskTracker.Console.Services;
 using TaskTracker.Infra;
+using TaskTracker.Infra.Repository;
 
 IConfigurationRoot builderConfig = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false, true)
