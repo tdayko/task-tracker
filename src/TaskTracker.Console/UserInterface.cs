@@ -150,7 +150,6 @@ public class UserInterface(TaskManager taskManager)
         {
             _menuWidthWriter.WriteLine("Invalid id. Please enter a valid id.");
             await _taskManager.RemoveTask(int.Parse(id));
-            Terminal.ReadKey();
             return;
         }
 
@@ -158,6 +157,7 @@ public class UserInterface(TaskManager taskManager)
         {
             await _taskManager.RemoveTask(int.Parse(id));
             _menuWidthWriter.WriteLine("Task removed successfully!");
+                        Terminal.ReadKey();
         }
         catch (Exception error)
         {
@@ -168,7 +168,8 @@ public class UserInterface(TaskManager taskManager)
 
     private void Exit()
     {
-        Terminal.WriteLine("Thank you for using the Todo List App!");
+        _menuWidthWriter.WriteLine("Thank you for using the Todo List App!");
+        Terminal.Clear();
         Environment.Exit(0);
     }
 
