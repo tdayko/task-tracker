@@ -1,0 +1,4 @@
+@host = http://localhost:5297/task-tracker/api
+
+GET {{host}}/tasks
+

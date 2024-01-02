@@ -1,0 +1,9 @@
+@host = http://localhost:5297/task-tracker/api
+
+POST {{host}}/tasks
+Content-Type: application/json
+
+{
+    "description": "Task 1 description"
+}
+

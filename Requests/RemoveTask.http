@@ -1,0 +1,5 @@
+@host = http://localhost:5297/task-tracker/api
+@id = 15
+
+DELETE {{host}}/tasks/{{id}}
+
