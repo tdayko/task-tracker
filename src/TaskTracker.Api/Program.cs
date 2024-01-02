@@ -8,6 +8,7 @@ using TaskTracker.Infra.Repository;
 #region Builder Services
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+builder.Configuration.AddUserSecrets<Program>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();

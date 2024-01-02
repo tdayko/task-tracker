@@ -8,6 +8,7 @@ using TaskTracker.Infra.Repository;
 
 IConfigurationRoot builderConfig = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false, true)
+    .AddUserSecrets<Program>()
     .Build();
 
 ServiceCollection services = new ServiceCollection();
