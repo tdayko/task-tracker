@@ -1,6 +1,6 @@
 namespace TaskTracker.Console.Helpers;
 
-public class ExtendedConsole(int baseTextWidth)
+public class WriteLineCentered(int baseTextWidth)
 {
     public int BaseTextWidth { get; } = baseTextWidth;
 

@@ -1,5 +1,4 @@
 using MediatR;
-
 using TaskTracker.Application.Commands.AddTasks;
 using TaskTracker.Application.Commands.RemoveTasks;
 using TaskTracker.Application.Queries.GetAllTasks;
@@ -10,99 +9,72 @@ namespace TaskTracker.Console.Services;
 
 public class TaskManager(ISender mediator)
 {
-    private readonly ExtendedConsole _console = new(12);
     private readonly ISender _mediator = mediator;
 
-    public async Task AddTask()
+    public async Task AddTask(TaskItem task)
     {
-        _console.Write("Enter task description: ");
-        string description = Terminal.ReadLine() ?? string.Empty;
-
-        if (string.IsNullOrWhiteSpace(description))
-        {
-            _console.WriteLine("Invalid description. Please enter a valid description.");
-            await AddTask();
-            return;
-        }
-
         try
         {
-            await _mediator.Send(new AddTaskCommand(new TaskItem(description)));
-            _console.WriteLine("Task added successfully!");
+            await _mediator.Send(new AddTaskCommand(task));
         }
         catch (Exception error)
         {
-            _console.WriteLine(error.Message);
-            _console.WriteLine(error.StackTrace);
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
         }
     }
 
-    public async Task GetAllTasks()
+    public async Task<IEnumerable<TaskItem>> GetAllTasks()
     {
         try
         {
             IEnumerable<TaskItem> tasks = await _mediator.Send(new GetAllTasksQuery());
-            Terminal.Clear();
-            _console.WriteLine("Tasks:");
-            foreach (TaskItem task in tasks)
-            {
-                _console.WriteLine($"Id: {task.Id} | Description: {task.Description} | IsComplete: {task.IsComplete}");
-            }
-
-            Terminal.ReadKey();
+            return tasks.OrderBy(task => task.Id);
         }
         catch (Exception error)
         {
-            _console.WriteLine(error.Message);
-            _console.WriteLine(error.StackTrace);
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+            return Enumerable.Empty<TaskItem>();
         }
     }
 
-    public async Task GetOneTask()
+    public async Task GetOneTask(int id)
     {
-        _console.Write("Enter task id: ");
-        string id = Terminal.ReadLine() ?? string.Empty;
-
-        if (string.IsNullOrWhiteSpace(id))
-        {
-            _console.WriteLine("Invalid id. Please enter a valid id.");
-            await GetOneTask();
-            return;
-        }
-
         try
         {
-            TaskItem task = await _mediator.Send(new GetOneTaskQuery(int.Parse(id)));
-            _console.WriteLine($"Id: {task.Id} | Description: {task.Description} | IsComplete: {task.IsComplete}");
+            TaskItem task = await _mediator.Send(new GetOneTaskQuery(id));
         }
         catch (Exception error)
         {
-            _console.WriteLine(error.Message);
-            _console.WriteLine(error.StackTrace);
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
         }
     }
 
-    public async Task RemoveTask()
+    public async Task RemoveTask(int id)
     {
-        _console.Write("Enter task id: ");
-        string id = Terminal.ReadLine() ?? string.Empty;
-
-        if (string.IsNullOrWhiteSpace(id))
-        {
-            _console.WriteLine("Invalid id. Please enter a valid id.");
-            await RemoveTask();
-            return;
-        }
-
         try
         {
-            await _mediator.Send(new RemoveTaskCommand(int.Parse(id)));
-            _console.WriteLine("Task removed successfully!");
+            await _mediator.Send(new RemoveTaskCommand(id));
         }
         catch (Exception error)
         {
-            _console.WriteLine(error.Message);
-            _console.WriteLine(error.StackTrace);
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+        }
+    }
+
+    public async Task MarkTaskAsDone(int id)
+    {
+        try
+        {
+            await _mediator.Send(new MarkTaskAsDoneCommand(id));
+        }
+        catch (Exception error)
+        {
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
         }
     }
 }

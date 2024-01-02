@@ -1,11 +1,13 @@
 using TaskTracker.Console.Services;
+using TaskTracker.Domain.Entities;
 using TaskTracker.Domain.Enums;
 
 namespace TaskTracker.Console;
 
 public class UserInterface(TaskManager taskManager)
 {
-    private readonly ExtendedConsole _console = new(12);
+    private readonly WriteLineCentered _menuWidthWriter = new(12);
+    private readonly WriteLineCentered _showTasksWriter = new(16);
     private readonly ISystemDescriptor _systemDescriptor = OSDetector.GetOSInfo();
     private readonly TaskManager _taskManager = taskManager;
 
@@ -21,40 +23,153 @@ public class UserInterface(TaskManager taskManager)
         }
     }
 
-    private void ShowMenu()
-    {
-        Terminal.Clear();
-        _console.WriteLine(
-            $"{_systemDescriptor.GetOSEmoji}  Welcome to the Todo List App! {_systemDescriptor.GetOSEmoji}\n");
-
-        _console.WriteLine("===================================");
-        _console.WriteLine($"Operacional System: {_systemDescriptor.GetOSName} {_systemDescriptor.GetOSEmoji}\n");
-        _console.WriteLine("1. Add Task");
-        _console.WriteLine("2. Remove Task");
-        _console.WriteLine("3. Mark Task as Completed");
-        _console.WriteLine("4. View Tasks");
-        _console.WriteLine("5. Exit");
-        _console.WriteLine("===================================\n");
-
-        _console.Write("Enter your choice (1-5): ");
-    }
-
     private async Task ChoiceHanler(TaskChoice choice)
     {
         switch (choice)
         {
             case TaskChoice.Add:
-                await _taskManager.AddTask();
+                AddTask();
                 break;
             case TaskChoice.View:
-                await _taskManager.GetAllTasks();
+                await ViewTasks();
                 break;
             case TaskChoice.Remove:
-                await _taskManager.RemoveTask();
+                await RemoveTask();
+                break;
+            case TaskChoice.MarkAsDone:
+                await MarkTaskAsDone();
+                break;
+            case TaskChoice.Exit:
+                Exit();
                 break;
             default:
-                _console.WriteLine("Invalid choice. Please enter a valid choice.");
+                _menuWidthWriter.WriteLine("Invalid choice. Please enter a valid choice.");
                 break;
         }
     }
+
+    private void ShowMenu()
+    {
+        Terminal.Clear();
+        _menuWidthWriter.WriteLine(
+            $"{_systemDescriptor.GetOSEmoji}  Welcome to the Todo List App! {_systemDescriptor.GetOSEmoji}\n");
+
+        _menuWidthWriter.WriteLine("===================================");
+        _menuWidthWriter.WriteLine($"Operacional System: {_systemDescriptor.GetOSName} {_systemDescriptor.GetOSEmoji}\n");
+        _menuWidthWriter.WriteLine("1. Add Task");
+        _menuWidthWriter.WriteLine("2. Remove Task");
+        _menuWidthWriter.WriteLine("3. Mark Task as Completed");
+        _menuWidthWriter.WriteLine("4. View Tasks");
+        _menuWidthWriter.WriteLine("5. Exit");
+        _menuWidthWriter.WriteLine("===================================\n");
+
+        _menuWidthWriter.Write("Enter your choice (1-5): ");
+    }
+
+    private async void AddTask()
+    {
+        _menuWidthWriter.Write("Enter task description: ");
+        string description = Terminal.ReadLine() ?? string.Empty;
+
+        if (string.IsNullOrWhiteSpace(description))
+        {
+            _menuWidthWriter.WriteLine("Invalid description. Please enter a valid description.");
+            AddTask();
+            return;
+        }
+
+        try
+        {
+            await _taskManager.AddTask(new TaskItem(description));
+            Terminal.WriteLine("");
+            _menuWidthWriter.WriteLine("Task added successfully!");
+            Terminal.ReadKey();
+        }
+        catch (Exception error)
+        {
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+        }
+    }
+
+    private async Task MarkTaskAsDone()
+    {
+        _menuWidthWriter.Write("Enter task id: ");
+        string id = Terminal.ReadLine() ?? string.Empty;
+
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            _menuWidthWriter.WriteLine("Invalid id. Please enter a valid id.");
+            await MarkTaskAsDone();
+            return;
+        }
+
+        try
+        {
+            await _taskManager.MarkTaskAsDone(int.Parse(id));
+            _menuWidthWriter.WriteLine("Task marked as done successfully!");
+            Terminal.ReadKey();
+        }
+        catch (Exception error)
+        {
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+        }
+    }
+
+    private async Task ViewTasks()
+    {
+        try
+        {
+            IEnumerable<TaskItem> tasks = await _taskManager.GetAllTasks();
+
+            Terminal.Clear();
+            _showTasksWriter.WriteLine("=================================================\n");
+            foreach (TaskItem task in tasks)
+            {
+                _showTasksWriter.WriteLine($"Id: {task.Id}");
+                _showTasksWriter.WriteLine($"Description: {task.Description}");
+                _showTasksWriter.WriteLine($"IsComplete: {task.IsComplete}");
+                _showTasksWriter.WriteLine("=================================================\n");
+            }
+            Terminal.ReadKey();
+        }
+        catch (Exception error)
+        {
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+        }
+    }
+
+    private async Task RemoveTask()
+    {
+        _menuWidthWriter.Write("Enter task id: ");
+        string id = Terminal.ReadLine() ?? string.Empty;
+
+        if (string.IsNullOrWhiteSpace(id))
+        {
+            _menuWidthWriter.WriteLine("Invalid id. Please enter a valid id.");
+            await _taskManager.RemoveTask(int.Parse(id));
+            Terminal.ReadKey();
+            return;
+        }
+
+        try
+        {
+            await _taskManager.RemoveTask(int.Parse(id));
+            _menuWidthWriter.WriteLine("Task removed successfully!");
+        }
+        catch (Exception error)
+        {
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+        }
+    }
+
+    private void Exit()
+    {
+        Terminal.WriteLine("Thank you for using the Todo List App!");
+        Environment.Exit(0);
+    }
+
 }

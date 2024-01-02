@@ -1,3 +1,3 @@
 namespace TaskTracker.Domain.Enums;
 
-public enum TaskChoice { Unknown, Add, Remove, MarkAsCompleted, View, Exit }
+public enum TaskChoice { Unknown, Add, Remove, MarkAsDone, View, Exit }

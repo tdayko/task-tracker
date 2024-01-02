@@ -2,7 +2,9 @@ namespace TaskTracker.Domain.Entities;
 
 public class TaskItem(string description, bool isComplete = false)
 {
-    public int? Id { get; set; }
-    public string Description { get; set; } = description;
-    public bool IsComplete { get; set; } = isComplete;
+    public int? Id { get; private set; }
+    public string Description { get; private set; } = description;
+    public bool IsComplete { get; private set; } = isComplete;
+
+    public void MarkComplete() => IsComplete = true;
 }
