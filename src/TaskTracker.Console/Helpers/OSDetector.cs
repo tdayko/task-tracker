@@ -1,3 +1,5 @@
+using TaskTracker.Application.Interfaces;
+
 namespace TaskTracker.Console.Helpers;
 
 public static class OSDetector

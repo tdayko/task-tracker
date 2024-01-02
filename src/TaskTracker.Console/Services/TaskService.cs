@@ -1,5 +1,7 @@
 using MediatR;
+
 using TaskTracker.Application.Commands.AddTasks;
+using TaskTracker.Application.Commands.MarkTaskAsDone;
 using TaskTracker.Application.Commands.RemoveTasks;
 using TaskTracker.Application.Queries.GetAllTasks;
 using TaskTracker.Application.Queries.GetOneTask.cs;
@@ -7,7 +9,7 @@ using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Console.Services;
 
-public class TaskManager(ISender mediator)
+public class TaskService(ISender mediator)
 {
     private readonly ISender _mediator = mediator;
 

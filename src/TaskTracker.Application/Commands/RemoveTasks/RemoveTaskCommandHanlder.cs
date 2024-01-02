@@ -1,8 +1,3 @@
-using MediatR;
-
-using TaskTracker.Application.Interfaces;
-using TaskTracker.Domain.Entities;
-
 namespace TaskTracker.Application.Commands.RemoveTasks;
 
 public class RemoveTaskCommandHandler(ITaskRepository taskRepository) : IRequestHandler<RemoveTaskCommand, TaskItem>

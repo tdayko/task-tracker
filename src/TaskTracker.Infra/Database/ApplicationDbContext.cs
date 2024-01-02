@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+
 using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Infra.Database;

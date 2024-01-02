@@ -1,8 +1,3 @@
-using MediatR;
-
-using TaskTracker.Application.Interfaces;
-using TaskTracker.Domain.Entities;
-
 namespace TaskTracker.Application.Commands.AddTasks;
 
 public class AddTaskCommandHandler(ITaskRepository taskRepository) : IRequestHandler<AddTaskCommand, TaskItem>

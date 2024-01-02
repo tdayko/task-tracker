@@ -3,6 +3,7 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 using TaskTracker.Application.Commands.AddTasks;
+using TaskTracker.Application.Commands.MarkTaskAsDone;
 using TaskTracker.Application.Commands.RemoveTasks;
 using TaskTracker.Application.Queries.GetAllTasks;
 using TaskTracker.Application.Queries.GetOneTask.cs;

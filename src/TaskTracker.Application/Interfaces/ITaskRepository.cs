@@ -1,5 +1,3 @@
-using TaskTracker.Domain.Entities;
-
 namespace TaskTracker.Application.Interfaces;
 
 public interface ITaskRepository

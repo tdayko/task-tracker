@@ -1,15 +1,15 @@
-using TaskTracker.Console.Services;
+using TaskTracker.Application.Interfaces;
 using TaskTracker.Domain.Entities;
 using TaskTracker.Domain.Enums;
 
 namespace TaskTracker.Console;
 
-public class UserInterface(TaskManager taskManager)
+public class UserInterface(TaskService taskManager)
 {
     private readonly WriteLineCentered _menuWidthWriter = new(12);
     private readonly WriteLineCentered _showTasksWriter = new(16);
     private readonly ISystemDescriptor _systemDescriptor = OSDetector.GetOSInfo();
-    private readonly TaskManager _taskManager = taskManager;
+    private readonly TaskService _taskManager = taskManager;
 
     public async Task RunAsync()
     {
@@ -55,7 +55,8 @@ public class UserInterface(TaskManager taskManager)
             $"{_systemDescriptor.GetOSEmoji}  Welcome to the Todo List App! {_systemDescriptor.GetOSEmoji}\n");
 
         _menuWidthWriter.WriteLine("===================================");
-        _menuWidthWriter.WriteLine($"Operacional System: {_systemDescriptor.GetOSName} {_systemDescriptor.GetOSEmoji}\n");
+        _menuWidthWriter.WriteLine(
+            $"Operacional System: {_systemDescriptor.GetOSName} {_systemDescriptor.GetOSEmoji}\n");
         _menuWidthWriter.WriteLine("1. Add Task");
         _menuWidthWriter.WriteLine("2. Remove Task");
         _menuWidthWriter.WriteLine("3. Mark Task as Completed");
@@ -132,6 +133,7 @@ public class UserInterface(TaskManager taskManager)
                 _showTasksWriter.WriteLine($"IsComplete: {task.IsComplete}");
                 _showTasksWriter.WriteLine("=================================================\n");
             }
+
             Terminal.ReadKey();
         }
         catch (Exception error)
@@ -157,7 +159,7 @@ public class UserInterface(TaskManager taskManager)
         {
             await _taskManager.RemoveTask(int.Parse(id));
             _menuWidthWriter.WriteLine("Task removed successfully!");
-                        Terminal.ReadKey();
+            Terminal.ReadKey();
         }
         catch (Exception error)
         {
@@ -172,5 +174,4 @@ public class UserInterface(TaskManager taskManager)
         Terminal.Clear();
         Environment.Exit(0);
     }
-
 }

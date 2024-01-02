@@ -1,8 +1,3 @@
-using MediatR;
-
-using TaskTracker.Application.Interfaces;
-using TaskTracker.Domain.Entities;
-
 namespace TaskTracker.Application.Queries.GetAllTasks;
 
 public class GetAllTasksQueryHandler(ITaskRepository taskRepository)

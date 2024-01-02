@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <InvariantGlobalization>true</InvariantGlobalization>
-    <UserSecretsId>02076074-034a-4889-8808-7940d3077fb1</UserSecretsId>
-  </PropertyGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
-    <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0"/>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TaskTracker.Application\TaskTracker.Application.csproj"/>
-    <ProjectReference Include="..\TaskTracker.Infra\TaskTracker.Infra.csproj"/>
-  </ItemGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <InvariantGlobalization>true</InvariantGlobalization>
+        <UserSecretsId>02076074-034a-4889-8808-7940d3077fb1</UserSecretsId>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.0"/>
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
+        <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="8.0.0"/>
+    </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\TaskTracker.Application\TaskTracker.Application.csproj"/>
+        <ProjectReference Include="..\TaskTracker.Infra\TaskTracker.Infra.csproj"/>
+    </ItemGroup>
 </Project>
