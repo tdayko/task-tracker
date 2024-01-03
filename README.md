@@ -31,13 +31,11 @@ Task Tracker is an application designed to enhance the tracking of  activities w
 > If you are using Linux, you can run the script using the PowerShell Core. [Install PowerShell on Linux](https://learn.microsoft.com/en-us/powershell/scripting/install/installing-powershell-on-linux?view=powershell-7.4)
 1.  Run the API with
 ```bash
-cd TaskTracker.Api
-dotnet run
+dotnet run --project .src\TaskTracker.Api
 ```
 1.  Run the console app with
 ```bash
-cd TaskTracker.Console
-dotnet run
+dotnet run --project .src\TaskTracker.Console
 ```
 
 ## ♻ Contribute

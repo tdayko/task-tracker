@@ -1,10 +1,13 @@
 # Function to display menu and get user input
 function Show-Menu {
     Clear-Host
+    Write-Host "====================================================="
+    Write-Host "Entity Framework Core Migration Helper `n"
     Write-Host "1. Add Migration"
     Write-Host "2. Remove Migration"
     Write-Host "3. Update Database"
     Write-Host "4. Exit"
+    Write-Host "====================================================="
 
     $choice = Read-Host "Enter your choice"
     return $choice
@@ -16,9 +19,8 @@ function Invoke-MigrationCommands {
         [string]$option
     )
 
-    $startupDirectory = "$PSScriptRoot/InternTaskTracker.Api/InternTaskTracker.Api.csproj"
-    $projectDirectory = "$PSScriptRoot/InternTaskTracker.Core/InternTaskTracker.Core.csproj"
-    $outputDir = "$PSScriptRoot/InternTaskTracker.Core/Database/Migrations"
+    $startupDirectory = "$PSScriptRoot/src/TaskTracker.Api/TaskTracker.Api.csproj"
+    $projectDirectory = "$PSScriptRoot/src/TaskTracker.Infra/TaskTracker.Infra.csproj"
     
     switch ($option) {
         1 {
@@ -26,14 +28,12 @@ function Invoke-MigrationCommands {
             dotnet ef migrations add $migrationName `
                 --startup-project $startupDirectory `
                 --project $projectDirectory `
-                --output-dir $outputDir `
                 --verbose
         }
         2 {
             dotnet ef migrations remove `
                 --startup-project $startupDirectory `
                 --project $projectDirectory `
-                --output-dir $outputDir `
                 --verbose
         }
         3 {
