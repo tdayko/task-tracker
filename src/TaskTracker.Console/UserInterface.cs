@@ -1,4 +1,4 @@
-using TaskTracker.Application.Interfaces;
+using TaskTracker.Console.Interfaces;
 using TaskTracker.Domain.Entities;
 using TaskTracker.Domain.Enums;
 
@@ -84,6 +84,7 @@ public class UserInterface(TaskService taskManager)
             await _taskManager.AddTask(new TaskItem(description));
             Terminal.WriteLine("");
             _menuWidthWriter.WriteLine("Task added successfully!");
+            _menuWidthWriter.Write("Press any key to continue...");
             Terminal.ReadKey();
         }
         catch (Exception error)
@@ -109,6 +110,7 @@ public class UserInterface(TaskService taskManager)
         {
             await _taskManager.MarkTaskAsDone(int.Parse(id));
             _menuWidthWriter.WriteLine("Task marked as done successfully!");
+            _menuWidthWriter.Write("Press any key to continue...");
             Terminal.ReadKey();
         }
         catch (Exception error)
@@ -124,7 +126,16 @@ public class UserInterface(TaskService taskManager)
         {
             IEnumerable<TaskItem> tasks = await _taskManager.GetAllTasks();
 
+            if(!tasks.Any())
+            {
+                _menuWidthWriter.WriteLine("You have no tasks.");
+                _showTasksWriter.Write("Press any key to continue...");
+                Terminal.ReadKey();
+                return;
+            }
+
             Terminal.Clear();
+            _showTasksWriter.WriteLine("You have the following tasks:");
             _showTasksWriter.WriteLine("=================================================\n");
             foreach (TaskItem task in tasks)
             {
@@ -134,12 +145,14 @@ public class UserInterface(TaskService taskManager)
                 _showTasksWriter.WriteLine("=================================================\n");
             }
 
+            _showTasksWriter.Write("Press any key to continue...");
             Terminal.ReadKey();
         }
         catch (Exception error)
         {
             Terminal.WriteLine(error.Message);
             Terminal.WriteLine(error.StackTrace);
+            this.Exit();
         }
     }
 
@@ -159,6 +172,7 @@ public class UserInterface(TaskService taskManager)
         {
             await _taskManager.RemoveTask(int.Parse(id));
             _menuWidthWriter.WriteLine("Task removed successfully!");
+            _menuWidthWriter.Write("Press any key to continue...");
             Terminal.ReadKey();
         }
         catch (Exception error)

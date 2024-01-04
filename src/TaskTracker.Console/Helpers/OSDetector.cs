@@ -1,4 +1,4 @@
-using TaskTracker.Application.Interfaces;
+using TaskTracker.Console.Interfaces;
 
 namespace TaskTracker.Console.Helpers;
 
