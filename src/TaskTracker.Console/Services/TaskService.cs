@@ -36,7 +36,7 @@ public class TaskService(RestClient client)
 
     public async Task MarkTaskAsDone(int id)
     {
-        var request = new RestRequest($"tasks/done/{id}", Method.Put);
+        var request = new RestRequest($"tasks/{id}/done", Method.Put);
         await _client.ExecuteAsync(request);
     }
 }
