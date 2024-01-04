@@ -5,7 +5,6 @@ using TaskTracker.Console;
 
 IConfiguration configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false, true)
-    .AddUserSecrets<Program>()
     .Build();
 
 ServiceCollection services = new();
