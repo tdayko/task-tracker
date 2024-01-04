@@ -1,42 +1,82 @@
-using RestSharp;
+using MediatR;
+
+using TaskTracker.Application.Commands.AddTasks;
+using TaskTracker.Application.Commands.MarkTaskAsDone;
+using TaskTracker.Application.Commands.RemoveTasks;
+using TaskTracker.Application.Queries.GetAllTasks;
+using TaskTracker.Application.Queries.GetOneTask.cs;
 using TaskTracker.Domain.Entities;
 
 namespace TaskTracker.Console.Services;
 
-public class TaskService(RestClient client)
+public class TaskService(ISender mediator)
 {
-    private readonly RestClient	_client = client;
+    private readonly ISender _mediator = mediator;
 
     public async Task AddTask(TaskItem task)
     {
-        var request = new RestRequest("tasks", Method.Post);
-        request.AddJsonBody(task);
-        await _client.ExecuteAsync(request);
+        try
+        {
+            await _mediator.Send(new AddTaskCommand(task));
+        }
+        catch (Exception error)
+        {
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+        }
     }
 
     public async Task<IEnumerable<TaskItem>> GetAllTasks()
     {
-        var request = new RestRequest("tasks", Method.Get);
-        var response = await _client.ExecuteAsync<IEnumerable<TaskItem>>(request);
-        return response.Data!;
+        try
+        {
+            IEnumerable<TaskItem> tasks = await _mediator.Send(new GetAllTasksQuery());
+            return tasks.OrderBy(task => task.Id);
+        }
+        catch (Exception error)
+        {
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+            return Enumerable.Empty<TaskItem>();
+        }
     }
 
-    public async Task<TaskItem> GetOneTask(int id)
+    public async Task GetOneTask(int id)
     {
-        var request = new RestRequest($"tasks/{id}", Method.Get);
-        var response = await _client.ExecuteAsync<TaskItem>(request);
-        return response.Data!;
+        try
+        {
+            TaskItem task = await _mediator.Send(new GetOneTaskQuery(id));
+        }
+        catch (Exception error)
+        {
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+        }
     }
 
     public async Task RemoveTask(int id)
     {
-        var request = new RestRequest($"tasks/{id}", Method.Delete);
-        await _client.ExecuteAsync(request);
+        try
+        {
+            await _mediator.Send(new RemoveTaskCommand(id));
+        }
+        catch (Exception error)
+        {
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+        }
     }
 
     public async Task MarkTaskAsDone(int id)
     {
-        var request = new RestRequest($"tasks/{id}/done", Method.Put);
-        await _client.ExecuteAsync(request);
+        try
+        {
+            await _mediator.Send(new MarkTaskAsDoneCommand(id));
+        }
+        catch (Exception error)
+        {
+            Terminal.WriteLine(error.Message);
+            Terminal.WriteLine(error.StackTrace);
+        }
     }
 }

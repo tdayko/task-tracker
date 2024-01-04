@@ -1,18 +1,27 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using TaskTracker.Console;
 
-IConfiguration configuration = new ConfigurationBuilder()
+using TaskTracker.Application;
+using TaskTracker.Application.Interfaces;
+using TaskTracker.Console;
+using TaskTracker.Infra;
+using TaskTracker.Infra.Repository;
+
+IConfigurationRoot builderConfig = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false, true)
     .AddUserSecrets<Program>()
     .Build();
 
 ServiceCollection services = new();
-services.AddRestClient(new Uri(configuration["ApiUrl"]!));
+
+
+services.AddApplication();
 services.AddSingleton<TaskService>();
+services.AddScoped<ITaskRepository, TaskRepository>();
+services.AddCoreDbContext(builderConfig);
 ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-UserInterface userInterface = new(serviceProvider.GetRequiredService<TaskService>());
+UserInterface userInterface = new UserInterface(serviceProvider.GetRequiredService<TaskService>());
 
 try
 {
