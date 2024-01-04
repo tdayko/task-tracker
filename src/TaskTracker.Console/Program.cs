@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
 using TaskTracker.Console;
 
 IConfiguration configuration = new ConfigurationBuilder()

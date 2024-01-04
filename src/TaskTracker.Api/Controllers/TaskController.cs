@@ -45,7 +45,7 @@ public class TaskController(IMediator mediator) : ControllerBase
         return Ok();
     }
 
-[HttpPut("tasks/{id}/done")]
+    [HttpPut("tasks/{id}/done")]
     public async Task<IActionResult> MarkTaskAsDone(int id)
     {
         TaskItem task = await _mediator.Send(new MarkTaskAsDoneCommand(id));

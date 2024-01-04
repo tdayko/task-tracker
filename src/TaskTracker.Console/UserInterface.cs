@@ -126,7 +126,7 @@ public class UserInterface(TaskService taskManager)
         {
             IEnumerable<TaskItem> tasks = await _taskManager.GetAllTasks();
 
-            if(!tasks.Any())
+            if (!tasks.Any())
             {
                 _menuWidthWriter.WriteLine("You have no tasks.");
                 _showTasksWriter.Write("Press any key to continue...");
@@ -152,7 +152,7 @@ public class UserInterface(TaskService taskManager)
         {
             Terminal.WriteLine(error.Message);
             Terminal.WriteLine(error.StackTrace);
-            this.Exit();
+            Exit();
         }
     }
 
