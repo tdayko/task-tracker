@@ -1,4 +1,10 @@
 # Task Tracker
+<div style="text-align: center;">
+  <img src="https://github.com/urltapas/task-tracker/assets/99461398/f8a9483a-bf72-463d-b1a7-e36bdc475cd5" style="width: 71%; display: inline-block;">
+  <img  src="https://github.com/urltapas/task-tracker/assets/99461398/07201c61-b581-49c6-81c6-75a9e5e0abd0" alt="Descrição da primeira imagem" style="width: 28%; display: inline-block;">
+</div>
+
+
 
 ## 📖 About
 
