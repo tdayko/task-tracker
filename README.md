@@ -17,7 +17,6 @@ Task Tracker is an application designed to enhance the tracking of  activities w
 3.  Clone this repository `git clone https://github.com/urltapas/task-tracker`
 4.  Enter in the project's folder: `cd task-tracker`
 5.  Run `dotnet restore`
-6.  Create user secrets based on [Secrets](https://github.com/urltapas/task-tracker/blob/main/Docs/Secrets.md)
 > If you haven't downloaded .NET yet you can follow this tutorial [Install .NET on Windows, Linux, and macOS](https://learn.microsoft.com/en-us/dotnet/core/install/)
 1.  Guarantee that you have Entity Framework Core installed globally `dotnet tool install --global dotnet-ef`
 > If you are using Linux, maybe you will need to add the dotnet-ef to your path.
