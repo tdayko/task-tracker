@@ -2,9 +2,9 @@ using RestSharp;
 
 using TaskTracker.Domain.Entities;
 
-namespace TaskTracker.Console.Services;
+namespace TaskTracker.Console.TaskClient;
 
-public class TaskService(RestClient client)
+public class TaskClient(RestClient client) : ITaskClient
 {
     private readonly RestClient _client = client;
 

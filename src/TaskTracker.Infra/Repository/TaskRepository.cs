@@ -19,12 +19,13 @@ public class TaskRepository(ApplicationDbContext context) : ITaskRepository
 
     public async Task<IEnumerable<TaskItem>> GetAllTasks()
     {
-        return await _context.TaskItems!.ToListAsync();
+        return await _context.TaskItems!.AsNoTracking().ToListAsync();
     }
 
     public async Task<TaskItem> GetOneTask(int id)
     {
-        return await _context.TaskItems!.FirstOrDefaultAsync(x => x.Id == id);
+        var task = await _context.TaskItems!.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+        return task!;
     }
 
     public async Task<TaskItem> RemoveTask(int id)

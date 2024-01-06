@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 
 using TaskTracker.Console;
+using TaskTracker.Console.TaskClient;
 
 IConfiguration configuration = new ConfigurationBuilder()
     .AddJsonFile("appsettings.json", false, true)
@@ -9,10 +10,10 @@ IConfiguration configuration = new ConfigurationBuilder()
 
 ServiceCollection services = new();
 services.AddRestClient(new Uri(configuration["ApiUrl"]!));
-services.AddSingleton<TaskService>();
+services.AddSingleton<ITaskClient,TaskClient>();
 ServiceProvider serviceProvider = services.BuildServiceProvider();
 
-UserInterface userInterface = new(serviceProvider.GetRequiredService<TaskService>());
+UserInterface userInterface = new(serviceProvider.GetRequiredService<ITaskClient>());
 
 try
 {

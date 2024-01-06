@@ -1,22 +1,24 @@
-using TaskTracker.Console.Interfaces;
+using TaskTracker.Console.Helpers;
+using TaskTracker.Console.SystemDescriptor;
+using TaskTracker.Console.TaskClient;
 using TaskTracker.Domain.Entities;
 using TaskTracker.Domain.Enums;
 
 namespace TaskTracker.Console;
 
-public class UserInterface(TaskService taskManager)
+public class UserInterface(ITaskClient taskClient)
 {
     private readonly WriteLineCentered _menuWidthWriter = new(12);
     private readonly WriteLineCentered _showTasksWriter = new(16);
     private readonly ISystemDescriptor _systemDescriptor = OSDetector.GetOSInfo();
-    private readonly TaskService _taskManager = taskManager;
-
+    private readonly ITaskClient _taskClient = taskClient;
+    
     public async Task RunAsync()
     {
         while (true)
         {
             ShowMenu();
-            string choiceRaw = Terminal.ReadLine() ?? string.Empty;
+            string choiceRaw = System.Console.ReadLine() ?? string.Empty;
             _ = Enum.TryParse(choiceRaw, out TaskChoice choice);
 
             await ChoiceHanler(choice);
@@ -50,7 +52,7 @@ public class UserInterface(TaskService taskManager)
 
     private void ShowMenu()
     {
-        Terminal.Clear();
+        System.Console.Clear();
         _menuWidthWriter.WriteLine(
             $"{_systemDescriptor.GetOSEmoji}  Welcome to the Todo List App! {_systemDescriptor.GetOSEmoji}\n");
 
@@ -70,7 +72,7 @@ public class UserInterface(TaskService taskManager)
     private async void AddTask()
     {
         _menuWidthWriter.Write("Enter task description: ");
-        string description = Terminal.ReadLine() ?? string.Empty;
+        string description = System.Console.ReadLine() ?? string.Empty;
 
         if (string.IsNullOrWhiteSpace(description))
         {
@@ -81,23 +83,23 @@ public class UserInterface(TaskService taskManager)
 
         try
         {
-            await _taskManager.AddTask(new TaskItem(description));
-            Terminal.WriteLine("");
+            await _taskClient.AddTask(new TaskItem(description));
+            System.Console.WriteLine("");
             _menuWidthWriter.WriteLine("Task added successfully!");
             _menuWidthWriter.Write("Press any key to continue...");
-            Terminal.ReadKey();
+            System.Console.ReadKey();
         }
         catch (Exception error)
         {
-            Terminal.WriteLine(error.Message);
-            Terminal.WriteLine(error.StackTrace);
+            System.Console.WriteLine(error.Message);
+            System.Console.WriteLine(error.StackTrace);
         }
     }
 
     private async Task MarkTaskAsDone()
     {
         _menuWidthWriter.Write("Enter task id: ");
-        string id = Terminal.ReadLine() ?? string.Empty;
+        string id = System.Console.ReadLine() ?? string.Empty;
 
         if (string.IsNullOrWhiteSpace(id))
         {
@@ -108,15 +110,15 @@ public class UserInterface(TaskService taskManager)
 
         try
         {
-            await _taskManager.MarkTaskAsDone(int.Parse(id));
+            await _taskClient.MarkTaskAsDone(int.Parse(id));
             _menuWidthWriter.WriteLine("Task marked as done successfully!");
             _menuWidthWriter.Write("Press any key to continue...");
-            Terminal.ReadKey();
+            System.Console.ReadKey();
         }
         catch (Exception error)
         {
-            Terminal.WriteLine(error.Message);
-            Terminal.WriteLine(error.StackTrace);
+            System.Console.WriteLine(error.Message);
+            System.Console.WriteLine(error.StackTrace);
         }
     }
 
@@ -124,17 +126,17 @@ public class UserInterface(TaskService taskManager)
     {
         try
         {
-            IEnumerable<TaskItem> tasks = await _taskManager.GetAllTasks();
+            IEnumerable<TaskItem> tasks = await _taskClient.GetAllTasks();
 
             if (!tasks.Any())
             {
                 _menuWidthWriter.WriteLine("You have no tasks.");
                 _showTasksWriter.Write("Press any key to continue...");
-                Terminal.ReadKey();
+                System.Console.ReadKey();
                 return;
             }
 
-            Terminal.Clear();
+            System.Console.Clear();
             _showTasksWriter.WriteLine("You have the following tasks:");
             _showTasksWriter.WriteLine("=================================================\n");
             foreach (TaskItem task in tasks)
@@ -146,12 +148,12 @@ public class UserInterface(TaskService taskManager)
             }
 
             _showTasksWriter.Write("Press any key to continue...");
-            Terminal.ReadKey();
+            System.Console.ReadKey();
         }
         catch (Exception error)
         {
-            Terminal.WriteLine(error.Message);
-            Terminal.WriteLine(error.StackTrace);
+            System.Console.WriteLine(error.Message);
+            System.Console.WriteLine(error.StackTrace);
             Exit();
         }
     }
@@ -159,33 +161,33 @@ public class UserInterface(TaskService taskManager)
     private async Task RemoveTask()
     {
         _menuWidthWriter.Write("Enter task id: ");
-        string id = Terminal.ReadLine() ?? string.Empty;
+        string id = System.Console.ReadLine() ?? string.Empty;
 
         if (string.IsNullOrWhiteSpace(id))
         {
             _menuWidthWriter.WriteLine("Invalid id. Please enter a valid id.");
-            await _taskManager.RemoveTask(int.Parse(id));
+            await _taskClient.RemoveTask(int.Parse(id));
             return;
         }
 
         try
         {
-            await _taskManager.RemoveTask(int.Parse(id));
+            await _taskClient.RemoveTask(int.Parse(id));
             _menuWidthWriter.WriteLine("Task removed successfully!");
             _menuWidthWriter.Write("Press any key to continue...");
-            Terminal.ReadKey();
+            System.Console.ReadKey();
         }
         catch (Exception error)
         {
-            Terminal.WriteLine(error.Message);
-            Terminal.WriteLine(error.StackTrace);
+            System.Console.WriteLine(error.Message);
+            System.Console.WriteLine(error.StackTrace);
         }
     }
 
     private void Exit()
     {
         _menuWidthWriter.WriteLine("Thank you for using the Todo List App!");
-        Terminal.Clear();
+        System.Console.Clear();
         Environment.Exit(0);
     }
 }

@@ -6,15 +6,15 @@ public class WriteLineCentered(int baseTextWidth)
 
     public void WriteLine(string text)
     {
-        int leftMargin = (Terminal.WindowWidth / 2) - BaseTextWidth;
+        int leftMargin = (System.Console.WindowWidth / 2) - BaseTextWidth;
 
-        Terminal.WriteLine(new string(' ', leftMargin) + text);
+        System.Console.WriteLine(new string(' ', leftMargin) + text);
     }
 
     public void Write(string text)
     {
-        int leftMargin = (Terminal.WindowWidth / 2) - BaseTextWidth;
+        int leftMargin = (System.Console.WindowWidth / 2) - BaseTextWidth;
 
-        Terminal.Write(new string(' ', leftMargin) + text);
+        System.Console.Write(new string(' ', leftMargin) + text);
     }
 }
