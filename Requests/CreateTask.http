@@ -4,6 +4,6 @@ POST {{host}}/tasks
 Content-Type: application/json
 
 {
-    "description": "Task 1 description"
+    "description": "Fazer compras no mercado"
 }
 

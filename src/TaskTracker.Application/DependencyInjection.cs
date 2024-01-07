@@ -1,3 +1,5 @@
+using MediatR;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace TaskTracker.Application;

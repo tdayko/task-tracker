@@ -1,5 +1,5 @@
 @host = http://localhost:5297/task-tracker/api
-@id = 13
+@id = 11
 
 GET {{host}}/tasks/{{id}}
 

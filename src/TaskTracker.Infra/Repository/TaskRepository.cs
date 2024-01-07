@@ -24,7 +24,8 @@ public class TaskRepository(ApplicationDbContext context) : ITaskRepository
 
     public async Task<TaskItem> GetOneTask(int id)
     {
-        return await _context.TaskItems!.FirstOrDefaultAsync(x => x.Id == id);
+        var tasks = await _context.TaskItems!.FirstOrDefaultAsync(x => x.Id == id);
+        return tasks!;
     }
 
     public async Task<TaskItem> RemoveTask(int id)
