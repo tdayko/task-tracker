@@ -45,6 +45,11 @@ dotnet run --project .src\TaskTracker.Api
 dotnet run --project .src\TaskTracker.Console
 ```
 
+## 🔍 Explore the alternate version 
+
+🚀 Also try a version that uses RESTsharp to consume the API using [Restshaper](https://restsharp.dev/)  to consume the TaskTracker API.
+> The alternative version is in the highlight/consume-api-console branch
+
 ## ♻ Contribute
 
 1.  Fork this repository
