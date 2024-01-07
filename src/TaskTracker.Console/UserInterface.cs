@@ -87,10 +87,11 @@ public class UserInterface(TaskService taskManager)
             _menuWidthWriter.Write("Press any key to continue...");
             Terminal.ReadKey();
         }
-        catch (Exception error)
+        catch 
         {
-            Terminal.WriteLine(error.Message);
-            Terminal.WriteLine(error.StackTrace);
+            Terminal.WriteLine("An error occurred while adding the task.");
+            Terminal.ReadKey();
+            return;
         }
     }
 
@@ -113,10 +114,11 @@ public class UserInterface(TaskService taskManager)
             _menuWidthWriter.Write("Press any key to continue...");
             Terminal.ReadKey();
         }
-        catch (Exception error)
+        catch
         {
-            Terminal.WriteLine(error.Message);
-            Terminal.WriteLine(error.StackTrace);
+            _menuWidthWriter.WriteLine("An error while marking the task as done.");
+            Terminal.ReadKey();
+            return;
         }
     }
 
@@ -126,7 +128,7 @@ public class UserInterface(TaskService taskManager)
         {
             IEnumerable<TaskItem> tasks = await _taskManager.GetAllTasks();
 
-            if(!tasks.Any())
+            if (!tasks.Any())
             {
                 _menuWidthWriter.WriteLine("You have no tasks.");
                 _showTasksWriter.Write("Press any key to continue...");
@@ -175,10 +177,11 @@ public class UserInterface(TaskService taskManager)
             _menuWidthWriter.Write("Press any key to continue...");
             Terminal.ReadKey();
         }
-        catch (Exception error)
+        catch
         {
-            Terminal.WriteLine(error.Message);
-            Terminal.WriteLine(error.StackTrace);
+            _menuWidthWriter.WriteLine("An error occurred while removing the task.");
+            Terminal.ReadKey();
+            return;
         }
     }
 
