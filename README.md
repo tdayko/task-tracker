@@ -9,6 +9,7 @@ Task Tracker is an application designed to enhance the tracking of  activities w
 - [.NET 6](https://dotnet.microsoft.com/pt-br/download/dotnet/8.0)
 - [Supabase](https://supabase.com/)
 - [Entity Framework Core](https://github.com/dotnet/efcore)
+- [RestShap](https://restsharp.dev/)
 
 ## 🚶‍♂️ Installing and Running
 
