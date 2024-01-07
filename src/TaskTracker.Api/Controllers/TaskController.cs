@@ -34,21 +34,21 @@ public class TaskController(IMediator mediator) : ControllerBase
     [HttpPost("tasks")]
     public async Task<IActionResult> AddTask(TaskItem taskItem)
     {
-        TaskItem task = await _mediator.Send(new AddTaskCommand(taskItem));
-        return Ok(task);
+        _ = await _mediator.Send(new AddTaskCommand(taskItem));
+        return StatusCode(StatusCodes.Status201Created, "Task was added successfully");
     }
 
     [HttpDelete("tasks/{id}")]
     public async Task<IActionResult> RemoveTask(int id)
     {
-        TaskItem task = await _mediator.Send(new RemoveTaskCommand(id));
-        return Ok();
+        _ = await _mediator.Send(new RemoveTaskCommand(id));
+        return Ok("Task was removed successfully");
     }
 
     [HttpPut("tasks/{id}/done")]
     public async Task<IActionResult> MarkTaskAsDone(int id)
     {
         TaskItem task = await _mediator.Send(new MarkTaskAsDoneCommand(id));
-        return Ok(task);
+        return Ok("Tas was marked as done successfully");
     }
 }

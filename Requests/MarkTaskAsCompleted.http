@@ -1,5 +1,4 @@
 @host = http://localhost:5297/task-tracker/api
-@id = 11
+@id = 10
 
-DELETE {{host}}/tasks/{{id}}
-
+PUT {{host}}/tasks/{{id}}/done

@@ -17,14 +17,14 @@ public class TaskClient(RestClient client) : ITaskClient
 
     public async Task<IEnumerable<TaskItem>> GetAllTasks()
     {
-        RestRequest request = new RestRequest("tasks");
+        RestRequest request = new("tasks");
         RestResponse<IEnumerable<TaskItem>> response = await _client.ExecuteAsync<IEnumerable<TaskItem>>(request);
         return response.Data!;
     }
 
     public async Task<TaskItem> GetOneTask(int id)
     {
-        RestRequest request = new RestRequest($"tasks/{id}");
+        RestRequest request = new($"tasks/{id}");
         RestResponse<TaskItem> response = await _client.ExecuteAsync<TaskItem>(request);
         return response.Data!;
     }

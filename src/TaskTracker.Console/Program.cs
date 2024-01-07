@@ -10,7 +10,7 @@ IConfiguration configuration = new ConfigurationBuilder()
 
 ServiceCollection services = new();
 services.AddRestClient(new Uri(configuration["ApiUrl"]!));
-services.AddSingleton<ITaskClient,TaskClient>();
+services.AddSingleton<ITaskClient, TaskClient>();
 ServiceProvider serviceProvider = services.BuildServiceProvider();
 
 UserInterface userInterface = new(serviceProvider.GetRequiredService<ITaskClient>());

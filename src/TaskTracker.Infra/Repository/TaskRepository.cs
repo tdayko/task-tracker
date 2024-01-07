@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 
-using TaskTracker.Application.Interfaces;
+using TaskTracker.Application.Repositories;
 using TaskTracker.Domain.Entities;
 using TaskTracker.Infra.Database;
 
@@ -24,7 +24,7 @@ public class TaskRepository(ApplicationDbContext context) : ITaskRepository
 
     public async Task<TaskItem> GetOneTask(int id)
     {
-        var task = await _context.TaskItems!.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
+        TaskItem? task = await _context.TaskItems!.AsNoTracking().FirstOrDefaultAsync(t => t.Id == id);
         return task!;
     }
 

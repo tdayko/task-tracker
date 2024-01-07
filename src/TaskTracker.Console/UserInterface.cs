@@ -12,7 +12,7 @@ public class UserInterface(ITaskClient taskClient)
     private readonly WriteLineCentered _showTasksWriter = new(16);
     private readonly ISystemDescriptor _systemDescriptor = OSDetector.GetOSInfo();
     private readonly ITaskClient _taskClient = taskClient;
-    
+
     public async Task RunAsync()
     {
         while (true)

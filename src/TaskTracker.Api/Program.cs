@@ -1,7 +1,9 @@
 using Microsoft.OpenApi.Models;
 
+using TaskTracker.Api.Controllers;
 using TaskTracker.Application;
-using TaskTracker.Application.Interfaces;
+using TaskTracker.Application.Errors;
+using TaskTracker.Application.Repositories;
 using TaskTracker.Infra;
 using TaskTracker.Infra.Repository;
 
@@ -27,12 +29,12 @@ WebApplication app = builder.Build();
 
 #region App Configuration
 
-app.UseSwagger();
-app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", " task tracker API"));
-app.MapGet("/", () => Results.Redirect("/swagger")).ExcludeFromDescription();
-
-app.UseHttpsRedirection();
+app.UseHttpsRedirection(); 
+app.UseExceptionHandler("/error");
 app.MapControllers();
+app.UseSwagger();
+app.UseSwaggerUI(x => x.SwaggerEndpoint("/swagger/v1/swagger.json", "Task tracker API"));
+app.MapGet("/", () => Results.Redirect("/swagger")).ExcludeFromDescription();
 app.Run();
 
 #endregion
