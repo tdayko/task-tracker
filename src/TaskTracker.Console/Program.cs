@@ -1,9 +1,9 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-
 using TaskTracker.Application;
 using TaskTracker.Application.Interfaces;
 using TaskTracker.Console;
+using TaskTracker.Console.Services;
 using TaskTracker.Infra;
 using TaskTracker.Infra.Repository;
 

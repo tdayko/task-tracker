@@ -1,5 +1,5 @@
 using TaskTracker.Console.Interfaces;
-namespace TaskTracker.Console.ValueObjects;
+namespace TaskTracker.Console.SystemDescriptor;
 
 public class MacOSSystemDescriptor : ISystemDescriptor
 {
