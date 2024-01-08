@@ -89,10 +89,10 @@ public class UserInterface(ITaskClient taskClient)
             _menuWidthWriter.Write("Press any key to continue...");
             System.Console.ReadKey();
         }
-        catch (Exception error)
+        catch
         {
-            System.Console.WriteLine(error.Message);
-            System.Console.WriteLine(error.StackTrace);
+            _menuWidthWriter.WriteLine("An error occurred while trying to add your task.");
+            _menuWidthWriter.WriteLine("Press any key to conti");
         }
     }
 
@@ -115,10 +115,10 @@ public class UserInterface(ITaskClient taskClient)
             _menuWidthWriter.Write("Press any key to continue...");
             System.Console.ReadKey();
         }
-        catch (Exception error)
+        catch
         {
-            System.Console.WriteLine(error.Message);
-            System.Console.WriteLine(error.StackTrace);
+            _menuWidthWriter.WriteLine("An error occurred while trying to mark your task as done.");
+            _menuWidthWriter.WriteLine("Press any key to conti");
         }
     }
 
@@ -150,10 +150,10 @@ public class UserInterface(ITaskClient taskClient)
             _showTasksWriter.Write("Press any key to continue...");
             System.Console.ReadKey();
         }
-        catch (Exception error)
+        catch
         {
-            System.Console.WriteLine(error.Message);
-            System.Console.WriteLine(error.StackTrace);
+            _menuWidthWriter.WriteLine("An error occurred while trying to get your tasks.");
+            _menuWidthWriter.WriteLine("Press any key to continue...");
             Exit();
         }
     }
@@ -177,10 +177,10 @@ public class UserInterface(ITaskClient taskClient)
             _menuWidthWriter.Write("Press any key to continue...");
             System.Console.ReadKey();
         }
-        catch (Exception error)
+        catch
         {
-            System.Console.WriteLine(error.Message);
-            System.Console.WriteLine(error.StackTrace);
+            _menuWidthWriter.WriteLine("An error occurred while trying to remove your task.");
+            _menuWidthWriter.WriteLine("Press any key to continue...");
         }
     }
 
