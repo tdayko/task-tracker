@@ -1,8 +1,5 @@
 using Microsoft.OpenApi.Models;
-
-using TaskTracker.Api.Controllers;
 using TaskTracker.Application;
-using TaskTracker.Application.Errors;
 using TaskTracker.Application.Repositories;
 using TaskTracker.Infra;
 using TaskTracker.Infra.Repository;

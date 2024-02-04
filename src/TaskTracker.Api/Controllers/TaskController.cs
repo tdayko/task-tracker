@@ -49,6 +49,6 @@ public class TaskController(IMediator mediator) : ControllerBase
     public async Task<IActionResult> MarkTaskAsDone(int id)
     {
         TaskItem task = await _mediator.Send(new MarkTaskAsDoneCommand(id));
-        return Ok("Tas was marked as done successfully");
+        return Ok("Task was marked as done successfully");
     }
 }

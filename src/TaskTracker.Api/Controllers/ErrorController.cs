@@ -1,5 +1,4 @@
-﻿﻿using TaskTracker.Api.Controllers;
-using Microsoft.AspNetCore.Diagnostics;
+﻿﻿using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using TaskTracker.Application.Errors;
 
