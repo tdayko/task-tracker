@@ -110,8 +110,8 @@ function Manage-UserSecrets {
             dotnet user-secrets list --project $project
         }
         3 {
-            $key = Read-Host "Enter the key to set:"
-            $value = Read-Host "Enter the value for the key:"
+            $key = Read-Host "Enter the key to set"
+            $value = Read-Host "Enter the value for the key"
             dotnet user-secrets set --project $project "$key" "$value"
             Write-Host "User secret set for $project"
         }
