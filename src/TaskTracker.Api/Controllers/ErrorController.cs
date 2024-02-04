@@ -8,6 +8,7 @@ namespace TaskTracker.Api.Controllers;
 public class ErrorsController : ControllerBase
 {
     [Route("/error")]
+    [NonAction]
     public IActionResult Error()
     {
         var exception = HttpContext.Features.Get<IExceptionHandlerFeature>()?.Error;
